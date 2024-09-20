@@ -1,2 +1,9 @@
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
+import {alien} from "./alien.js";
+document.addEventListener("keydown", function(e) {
+    if(e.key === "ArrowLeft"){
+        alien.walk(-1);
+    }
+    else if(e.key === "ArrowRight"){
+        alien.walk(1);
+    }
+});
