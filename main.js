@@ -7,3 +7,8 @@ document.addEventListener("keydown", function(e) {
         alien.walk(1);
     }
 });
+document.addEventListener("keyup", function(e) {
+    if(e.key === "ArrowLeft" || e.key === "ArrowRight"){
+        alien.stand();
+    }
+})

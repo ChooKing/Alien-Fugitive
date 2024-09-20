@@ -10,6 +10,12 @@ export const alien = {
         else if(this.offsetX > 0) this.offsetX = -83.3333;
         this.sprite.style.setProperty("--offset-x",`${this.offsetX}%`);
         this.pos += dir * this.speed;
+        if(this.pos < 3) this.pos = 3;
+        if(this.pos > 97) this.pos = 97;
         this.container.style.left = `${this.pos}%`;
+    },
+    stand(){
+        this.offsetX = 0;
+        this.sprite.style.setProperty("--offset-x","0");
     }
 }
