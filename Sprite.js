@@ -15,8 +15,8 @@ export class Sprite extends Movable {
     }
     lastFrameAdvance = 0;
 
-    constructor(pos, src, width, height, frameCount) {
-        super(pos, width / frameCount, height);
+    constructor(pos, src, width, height, frameCount, range) {
+        super(pos, width / frameCount, height, range);
         this.image.src = src;
         this.image.width = width;
         this.image.height = height;
