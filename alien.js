@@ -1,21 +1,18 @@
-export const alien = {
-    container: document.getElementById("alien-viewport"),
-    sprite: document.getElementById("alien"),
-    offsetX: 0,
-    pos: 50,
-    speed: 0.8,
-    walk(dir){
-        this.offsetX += dir * 16.6666;
-        if(this.offsetX < -83.3333) this.offsetX = 0;
-        else if(this.offsetX > 0) this.offsetX = -83.3333;
-        this.sprite.style.setProperty("--offset-x",`${this.offsetX}%`);
-        this.pos += dir * this.speed;
-        if(this.pos < 3) this.pos = 3;
-        if(this.pos > 97) this.pos = 97;
-        this.container.style.left = `${this.pos}%`;
-    },
+import {Sprite} from "./Sprite.js";
+export class Alien extends Sprite {
+    constructor() {
+        super({x: 800 - 56, y: 650}, "/sprites/alien.png", 672, 200, 6);
+    }
+    walk(dir) {
+        this.speed.x += dir * 2;
+        this.fps = this.speed.x * 3;
+    }
     stand(){
-        this.offsetX = 0;
-        this.sprite.style.setProperty("--offset-x","0");
+        this.frame = 0;
+        this.fps = 0;
+        this.speed = {x: 0, y: 0};
+    }
+    update(t){
+        super.update(t);
     }
 }
