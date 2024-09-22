@@ -1,7 +1,8 @@
+import {CONSTS} from "./consts.js";
 import {Sprite} from "./Sprite.js";
 export class Alien extends Sprite {
     constructor() {
-        super({x: 800 - 56, y: 650}, "/sprites/alien.png", 672, 200, 6);
+        super({x: 800 - 56, y: 650}, "/sprites/alien.png", 672, 200, 6, {minX: 0, maxX: CONSTS.GAME_WIDTH, minY: 0, maxY: CONSTS.GAME_HEIGHT});
     }
     walk(dir) {
         this.speed.x += dir * 2;
