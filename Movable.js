@@ -13,8 +13,8 @@ export class Movable{
     }
     update(t){
         this.pos = {
-            x: this.pos.x += (this.speed.x * t / 40),
-            y: this.pos.y += (this.speed.y * t / 40)
+            x: this.pos.x += (this.speed.x * t / 20),
+            y: this.pos.y += (this.speed.y * t / 20)
         }
         if(this.pos.x < this.range.minX) this.pos.x = this.range.minX;
         else if(this.pos.x > this.range.maxX - this.width) this.pos.x = this.range.maxX - this.width;
