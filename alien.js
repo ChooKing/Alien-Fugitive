@@ -1,9 +1,10 @@
 import {Globals} from "./globals.js";
-import {Sprite} from "./Sprite.js";
+import {MakeSprite} from "./Sprite.js";
 import {Pellet} from "./Pellet.js";
-export class Alien extends Sprite {
+const AlienBase = MakeSprite("/sprites/alien.png");
+export class Alien extends AlienBase {
     constructor() {
-        super({x: 800 - 56, y: 650}, "/sprites/alien.png", 672, 200, 6, {minX: 0, maxX: Globals.GAME_WIDTH, minY: 0, maxY: Globals.GAME_HEIGHT});
+        super({x: 800 - 56, y: 650}, 672, 200, 6, {minX: 0, maxX: Globals.GAME_WIDTH, minY: 0, maxY: Globals.GAME_HEIGHT});
     }
     walk(dir) {
         this.speed.x += dir * 2.5;

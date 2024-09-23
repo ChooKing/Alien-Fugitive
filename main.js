@@ -1,7 +1,6 @@
 import {Globals} from "./globals.js";
 import {Alien} from "./alien.js";
 import {UFO} from "./UFO.js";
-import {Sprite} from "./Sprite.js";
 const canvas = document.querySelector("#app");
 canvas.width = Globals.GAME_WIDTH;
 canvas.height = Globals.GAME_HEIGHT;

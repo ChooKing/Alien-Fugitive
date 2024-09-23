@@ -23,7 +23,6 @@ export class Pellet extends Movable{
                 Globals.Pellets = Globals.Pellets.filter(pellet => pellet !== this);
                 const explosion = new Explosion({x:ufo.pos.x + (Globals.UFO_WIDTH / 2) - (Globals.EXPLOSION_SIZE / 2),y:ufo.pos.y + (Globals.UFO_HEIGHT / 2) - (Globals.EXPLOSION_SIZE / 2)}, ufo.speed);
                 Globals.Explosions.push(explosion);
-                console.log(this.pos, ufo.speed);
                 delete this;
             }
         });
