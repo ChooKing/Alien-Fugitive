@@ -1,7 +1,6 @@
-import {MakeSprite} from "./Sprite.js";
+import {SpriteBase} from "./Sprite.js";
 import {Globals} from "./globals.js";
-const ExplosionBase = MakeSprite("/sprites/explosion.png");
-export class Explosion extends ExplosionBase{
+export class Explosion extends SpriteBase("/sprites/explosion.png"){
     constructor(pos, speed) {
         super(
             pos,

@@ -1,8 +1,7 @@
 import {Globals} from "./globals.js";
-import {MakeSprite} from "./Sprite.js";
+import {SpriteBase} from "./Sprite.js";
 import {Pellet} from "./Pellet.js";
-const AlienBase = MakeSprite("/sprites/alien.png");
-export class Alien extends AlienBase {
+export class Alien extends SpriteBase("/sprites/alien.png") {
     constructor() {
         super({x: 800 - 56, y: 650}, 672, 200, 6, {minX: 0, maxX: Globals.GAME_WIDTH, minY: 0, maxY: Globals.GAME_HEIGHT});
     }

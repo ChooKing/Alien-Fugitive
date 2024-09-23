@@ -1,6 +1,6 @@
 import {Movable} from "./Movable.js";
-export function MakeSprite(src){
-    return class SpriteBase extends Movable{
+export function SpriteBase(src){
+    return class staticThis extends Movable{
         frame = 0;
         fps = 0;
         static img = null;
@@ -19,9 +19,9 @@ export function MakeSprite(src){
             this.image.height = height;
             this.image.frameCount = frameCount;
             this.image.frameWidth = width / frameCount;
-            if(!SpriteBase.img){
-                SpriteBase.img = new Image();
-                SpriteBase.img.src = src;
+            if(!staticThis.img){
+                staticThis.img = new Image();
+                staticThis.img.src = src;
             }
         }
         nextFrame(dir){
@@ -31,7 +31,7 @@ export function MakeSprite(src){
         }
         render(ctx) {
             ctx.drawImage(
-                SpriteBase.img,
+                staticThis.img,
                 this.frame * this.image.frameWidth,
                 0,
                 this.image.frameWidth,
