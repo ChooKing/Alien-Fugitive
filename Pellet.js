@@ -1,5 +1,6 @@
 import {Movable} from "./Movable.js";
 import {Globals} from "./globals.js";
+import {Explosion} from "./Explosion.js";
 
 export class Pellet extends Movable{
     constructor(pos) {
@@ -20,6 +21,9 @@ export class Pellet extends Movable{
                 ((ufo.pos.y <= this.pos.y) && (ufo.pos.y + ufo.height >= this.pos.y))
             ){
                 Globals.Pellets = Globals.Pellets.filter(pellet => pellet !== this);
+                const explosion = new Explosion({x:ufo.pos.x + (Globals.UFO_WIDTH / 2) - (Globals.EXPLOSION_SIZE / 2),y:ufo.pos.y + (Globals.UFO_HEIGHT / 2) - (Globals.EXPLOSION_SIZE / 2)}, ufo.speed);
+                Globals.Explosions.push(explosion);
+                console.log(this.pos, ufo.speed);
                 delete this;
             }
         });

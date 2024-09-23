@@ -1,6 +1,7 @@
 import {Globals} from "./globals.js";
 import {Alien} from "./alien.js";
 import {UFO} from "./UFO.js";
+import {Sprite} from "./Sprite.js";
 const canvas = document.querySelector("#app");
 canvas.width = Globals.GAME_WIDTH;
 canvas.height = Globals.GAME_HEIGHT;
@@ -41,6 +42,10 @@ function gameLoop(t){
         else pellet.render(ctx);
     });
     if(toRemove.length > 0) Globals.Pellets = Globals.Pellets.filter(pellet => !toRemove.includes(pellet));
+    Globals.Explosions.forEach(explosion=>{
+        explosion.update(timeDelta);
+        explosion.render(ctx);
+    });
     requestAnimationFrame(gameLoop);
 }
 gameLoop(0);
