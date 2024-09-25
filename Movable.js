@@ -19,4 +19,16 @@ export class Movable{
         if(this.pos.x < this.range.minX) this.pos.x = this.range.minX;
         else if(this.pos.x > this.range.maxX - this.width) this.pos.x = this.range.maxX - this.width;
     }
+    isColliding(other){
+        return (
+            (
+                (other.pos.x <= this.pos.x) &&
+                (other.pos.x + other.width >= this.pos.x)
+            ) &&
+            (
+                (other.pos.y <= this.pos.y) &&
+                (other.pos.y + other.height >= this.pos.y)
+            )
+        );
+    }
 }

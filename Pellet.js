@@ -18,11 +18,7 @@ export class Pellet extends Movable{
     update(t){
         super.update(t);
         Globals.UFOs.forEach(ufo=>{
-            if(
-                (!ufo.willDestroy) &&
-                ((ufo.pos.x <= this.pos.x) && (ufo.pos.x + ufo.width >= this.pos.x)) &&
-                ((ufo.pos.y <= this.pos.y) && (ufo.pos.y + ufo.height >= this.pos.y))
-            ){
+            if(this.isColliding(ufo) && !ufo.willDestroy){
                 Globals.Pellets = Globals.Pellets.filter(pellet => pellet !== this);
                 const explosion = new Explosion({x:ufo.pos.x + (Globals.UFO_WIDTH / 2) - (Globals.EXPLOSION_SIZE / 2),y:ufo.pos.y + (Globals.UFO_HEIGHT / 2) - (Globals.EXPLOSION_SIZE / 2)}, ufo.speed);
                 Globals.Explosions.push(explosion);
