@@ -1,9 +1,19 @@
 import {Globals} from "./globals.js";
 import {SpriteBase} from "./Sprite.js";
 import {Pellet} from "./Pellet.js";
-export class Alien extends SpriteBase("/sprites/alien.png") {
+export class Alien extends new SpriteBase(
+    "/sprites/alien.png",
+    672,
+    200,
+    6,
+    {
+        minX: 0,
+        maxX: Globals.GAME_WIDTH,
+        minY: 0,
+        maxY: Globals.GAME_HEIGHT
+    }) {
     constructor() {
-        super({x: 800 - 56, y: 650}, 672, 200, 6, {minX: 0, maxX: Globals.GAME_WIDTH, minY: 0, maxY: Globals.GAME_HEIGHT});
+        super({x: 800 - 56, y: 650});
     }
     walk(dir) {
         this.speed.x += dir * 2.5;

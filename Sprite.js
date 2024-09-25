@@ -1,45 +1,46 @@
 import {Movable} from "./Movable.js";
-export function SpriteBase(src){
+export function SpriteBase(src, width, height, frameCount, range){
     return class staticThis extends Movable{
         frame = 0;
         fps = 0;
-        static img = null;
-        image = {
+        lastFrameAdvance = 0;
+
+        static image = {
             src: "",
             width: 0,
             height: 0,
             frameCount: 0,
             frameWidth: 0,
         }
-        lastFrameAdvance = 0;
-
-        constructor(pos, width, height, frameCount, range) {
-            super(pos, width / frameCount, height, range);
+        static range;
+        static{
             this.image.width = width;
             this.image.height = height;
             this.image.frameCount = frameCount;
             this.image.frameWidth = width / frameCount;
-            if(!staticThis.img){
-                staticThis.img = new Image();
-                staticThis.img.src = src;
-            }
+            this.image.img = new Image();
+            this.image.img.src = src;
+            this.range = range;
+        }
+        constructor(pos) {
+            super(pos, staticThis.image.frameWidth, staticThis.image.height, range);
         }
         nextFrame(dir){
             this.frame += dir;
-            if (this.frame > this.image.frameCount - 1) this.frame = 0;
-            else if(this.frame < 0) this.frame = this.image.frameCount - 1;
+            if (this.frame > staticThis.image.frameCount - 1) this.frame = 0;
+            else if(this.frame < 0) this.frame = staticThis.image.frameCount - 1;
         }
         render(ctx) {
             ctx.drawImage(
-                staticThis.img,
-                this.frame * this.image.frameWidth,
+                staticThis.image.img,
+                this.frame * staticThis.image.frameWidth,
                 0,
-                this.image.frameWidth,
-                this.image.height,
+                staticThis.image.frameWidth,
+                staticThis.image.height,
                 Math.round(this.pos.x),
                 Math.round(this.pos.y),
-                this.image.frameWidth,
-                this.image.height
+                staticThis.image.frameWidth,
+                staticThis.image.height
             );
         }
         update(t){
