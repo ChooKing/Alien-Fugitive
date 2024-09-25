@@ -7,13 +7,24 @@
     <title>Alien Fugitive</title>
   </head>
   <body>
-<!--    <main id="app">-->
-<!--      <div id="alien-viewport">-->
-<!--        <img src="/sprites/alien.png" id="alien"></img>-->
-<!--      </div>-->
-<!--    </main>-->
-
-    <canvas id="app"></canvas>
+    <main>
+        <div class="intro">
+            <h1>ALIEN FUGITIVE</h1>
+            <div class="btn-container">
+                <button type="button" id="btn-play">PLAY</button>
+                <button type="button" id="btn-help">HELP</button>
+            </div>
+        </div>
+        <div class="stats hidden">
+            <div class="stat-bar">
+                <div class="level" data-label="LEVEL: ">1</div>
+                <div class="ammo" data-label="AMMO: ">50</div>
+                <div class="lives" data-label="LIVES: ">5</div>
+                <div class="score" data-label="SCORE: ">0</div>
+            </div>
+        </div>
+        <canvas id="app"></canvas>
+    </main>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

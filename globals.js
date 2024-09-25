@@ -8,6 +8,13 @@ export const Globals = {
     EXPLOSION_SIZE: 120,
     EXPLOSION_DESTROY_TIME: 450,
     PELLET_SIZE: 7,
+    POINTS_PER_UFO: 10,
+    stats:{
+        score: 0,
+        level: 1,
+        ammo: 50,
+        lives: 5
+    },
     UFOs: [],
     Pellets: [],
     Explosions: []

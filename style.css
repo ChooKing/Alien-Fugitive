@@ -6,12 +6,60 @@
   margin: 0;
   padding: 0;
 }
-
-#app{
-  display: block;
+main{
+  position : relative;
+}
+.hidden{
+  display: none;
+}
+.intro, .stats{
+  position : absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+.intro h1{
+  margin-block-start: 8vmin;
+  font-size : 12vmin;
+  text-align: center;
+}
+.intro .btn-container{
+  margin-block-start: 10vmin;
+  display : flex;
+  gap: 4vmin;
+  justify-content: center;
+}
+.intro .btn-container button{
+  font-size: 6vmin;
+  padding: 1vmin 2vmin;
+  border-radius: 2vmin;
+  background-color: rgb(22, 85, 5);
+  cursor: pointer;
+}
+.intro .btn-container button:hover{
+  background-color: rgb(18, 57, 8);
+}
+.stats{
+  border: 1px solid red;
+}
+.stat-bar{
+  display: flex;
+  padding: 2vmin;
+  font-size: 5vmin;
+  gap: 4vmin;
+}
+.stat-bar > div::before{
+  content: attr(data-label);
+}
+.stat-bar .score{
+  margin-left: auto;
+}
+#app, .intro, .stats{
   margin-inline: auto;
   aspect-ratio: 16/9;
   width: min(99.5vh /9 * 16, 100vw);
+}
+#app{
+  display: block;
   background: url("background.png") no-repeat 0 0/ 100%;
 }
 #alien-viewport{

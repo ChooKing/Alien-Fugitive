@@ -1,11 +1,13 @@
 import {Movable} from "./Movable.js";
 import {Globals} from "./globals.js";
 import {Explosion} from "./Explosion.js";
+import {adjustAmmo, incScore} from "./stats.js";
 
 export class Pellet extends Movable{
     constructor(pos) {
         super(pos, Globals.PELLET_SIZE, Globals.PELLET_SIZE, {minX: 0, maxX: Globals.GAME_WIDTH, minY: -Globals.PELLET_SIZE, maxY: Globals.GAME_HEIGHT});
         this.speed.y = -30;
+        adjustAmmo(-1);
     }
     render(ctx){
         ctx.fillStyle = "#ff2525";
@@ -26,6 +28,7 @@ export class Pellet extends Movable{
                 Globals.Explosions.push(explosion);
                 ufo.destroy();
                 explosion.destroy();
+                incScore(Globals.POINTS_PER_UFO);
                 delete this;
             }
         });

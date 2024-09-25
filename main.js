@@ -5,6 +5,13 @@ const canvas = document.querySelector("#app");
 canvas.width = Globals.GAME_WIDTH;
 canvas.height = Globals.GAME_HEIGHT;
 const ctx = canvas.getContext("2d");
+const intro = document.querySelector(".intro");
+const stats = document.querySelector(".stats");
+const btnPlay = document.querySelector("#btn-play");
+btnPlay.addEventListener("click", function(){
+    intro.classList.add("hidden");
+    stats.classList.remove("hidden");
+});
 const alien = new Alien();
 let lastUpdate = 0;
 let UFOInterval = 0;
