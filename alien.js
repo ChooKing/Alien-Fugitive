@@ -25,8 +25,10 @@ export class Alien extends new SpriteBase(
         this.speed = {x: 0, y: 0};
     }
     shoot(){
-        const pellet = new Pellet({x: this.pos.x + (this.width / 2), y: this.pos.y + 42});
-        Globals.Pellets.push(pellet);
+        if(Globals.stats.ammo > 0){
+            const pellet = new Pellet({x: this.pos.x + (this.width / 2), y: this.pos.y + 42});
+            Globals.Pellets.push(pellet);
+        }
     }
     update(t){
         super.update(t);
