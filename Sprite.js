@@ -5,20 +5,16 @@ export function SpriteBase(src, width, height, frameCount, range){
         fps = 0;
         lastFrameAdvance = 0;
 
-        static image = {
-            src: "",
-            width: 0,
-            height: 0,
-            frameCount: 0,
-            frameWidth: 0,
-        }
+        static image;
         static range;
         static{
-            this.image.width = width;
-            this.image.height = height;
-            this.image.frameCount = frameCount;
-            this.image.frameWidth = width / frameCount;
-            this.image.img = new Image();
+            this.image = {
+                width: width,
+                height: height,
+                frameCount: frameCount,
+                frameWidth: width / frameCount,
+                img: new Image()
+            }
             this.image.img.src = src;
             this.range = range;
         }
