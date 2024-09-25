@@ -1,6 +1,8 @@
 import {Globals} from "./globals.js";
 import {Alien} from "./alien.js";
 import {UFO} from "./UFO.js";
+import {Supply} from "./Supply.js";
+import {adjustAmmo} from "./stats.js";
 const canvas = document.querySelector("#app");
 canvas.width = Globals.GAME_WIDTH;
 canvas.height = Globals.GAME_HEIGHT;
@@ -16,11 +18,17 @@ const alien = new Alien();
 let lastUpdate = 0;
 let UFOInterval = 0;
 function addUFO(){
+    Globals.UFO_COUNT += 1;
     const y = Math.floor(Math.random() * Globals.SKY_SIZE);
     const dir = Math.random() > 0.5 ? -1 : 1;
     const ufo = new UFO({x: dir > 0 ? -160 : Globals.GAME_WIDTH + 160, y}, dir * 3);
     Globals.UFOs.push(ufo);
     UFOInterval = 0;
+    if(Globals.UFO_COUNT >= Globals.UFOs_PER_SUPPLY){
+        Globals.UFO_COUNT = 0;
+        const supply = new Supply({x: Math.floor(Math.random() * Globals.GAME_WIDTH - Supply.image.frameWidth), y: -Supply.image.height});
+        Globals.Supplies.push(supply);
+    }
 }
 function gameLoop(t){
     const timeDelta = lastUpdate === 0 ? 0 : t - lastUpdate;
@@ -51,6 +59,14 @@ function gameLoop(t){
     Globals.Explosions.forEach(explosion=>{
         explosion.update(timeDelta);
         explosion.render(ctx);
+    });
+    Globals.Supplies.forEach(supply=>{
+        supply.update(timeDelta);
+        if(supply.isColliding(alien)){
+            adjustAmmo(50);
+            supply.destroy();
+        }
+        supply.render(ctx);
     });
     requestAnimationFrame(gameLoop);
 }
