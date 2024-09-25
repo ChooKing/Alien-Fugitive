@@ -26,7 +26,7 @@ function addUFO(){
     UFOInterval = 0;
     if(Globals.UFO_COUNT >= Globals.UFOs_PER_SUPPLY){
         Globals.UFO_COUNT = 0;
-        const supply = new Supply({x: Math.floor(Math.random() * Globals.GAME_WIDTH - Supply.image.frameWidth), y: -Supply.image.height});
+        const supply = new Supply({x: Math.floor(Math.random() * Globals.GAME_WIDTH - (alien.width * 2)) + alien.width, y: -Supply.image.height});
         Globals.Supplies.push(supply);
     }
 }
@@ -62,11 +62,11 @@ function gameLoop(t){
     });
     Globals.Supplies.forEach(supply=>{
         supply.update(timeDelta);
+        supply.render(ctx);
         if(supply.isColliding(alien)){
             adjustAmmo(50);
             supply.destroy();
         }
-        supply.render(ctx);
     });
     requestAnimationFrame(gameLoop);
 }
