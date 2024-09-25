@@ -1,13 +1,14 @@
 import {Movable} from "./Movable.js";
-export function SpriteBase(src, width, height, frameCount, range){
-    return class staticThis extends Movable{
+
+export function SpriteBase(src, width, height, frameCount, range) {
+    return class staticThis extends Movable {
         frame = 0;
         fps = 0;
         lastFrameAdvance = 0;
 
         static image;
         static range;
-        static{
+        static {
             this.image = {
                 width: width,
                 height: height,
@@ -18,14 +19,17 @@ export function SpriteBase(src, width, height, frameCount, range){
             this.image.img.src = src;
             this.range = range;
         }
+
         constructor(pos) {
             super(pos, staticThis.image.frameWidth, staticThis.image.height, range);
         }
-        nextFrame(dir){
+
+        nextFrame(dir) {
             this.frame += dir;
             if (this.frame > staticThis.image.frameCount - 1) this.frame = 0;
-            else if(this.frame < 0) this.frame = staticThis.image.frameCount - 1;
+            else if (this.frame < 0) this.frame = staticThis.image.frameCount - 1;
         }
+
         render(ctx) {
             ctx.drawImage(
                 staticThis.image.img,
@@ -39,13 +43,13 @@ export function SpriteBase(src, width, height, frameCount, range){
                 staticThis.image.height
             );
         }
-        update(t){
+
+        update(t) {
             super.update(t);
-            if(this.fps !== 0){
-                if(this.lastFrameAdvance === 0){
+            if (this.fps !== 0) {
+                if (this.lastFrameAdvance === 0) {
                     this.nextFrame(this.fps > 1 ? 1 : -1);
-                }
-                else if(this.lastFrameAdvance > Math.abs(1000 / this.fps)){
+                } else if (this.lastFrameAdvance > Math.abs(1000 / this.fps)) {
                     this.nextFrame(this.fps > 1 ? 1 : -1);
                     this.lastFrameAdvance = 0;
                 }
