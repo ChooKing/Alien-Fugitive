@@ -68,6 +68,10 @@ function gameLoop(t){
             supply.destroy();
         }
     });
+    Globals.Spores.forEach(spore=>{
+        spore.update(timeDelta);
+        spore.render(ctx);
+    });
     requestAnimationFrame(gameLoop);
 }
 gameLoop(0);

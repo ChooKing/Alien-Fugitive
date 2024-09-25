@@ -1,5 +1,6 @@
 import {SpriteBase} from "./Sprite.js";
 import {Globals} from "./globals.js";
+import {Spore} from "./Spore.js";
 
 export class UFO extends new SpriteBase(
     "/sprites/ufo.png",
@@ -13,6 +14,7 @@ export class UFO extends new SpriteBase(
         maxY: Globals.GAME_HEIGHT
     }) {
     willDestroy = false;
+    canShoot = true;
     constructor(pos, speed) {
         super(pos);
         this.speed.x = speed;
@@ -24,5 +26,20 @@ export class UFO extends new SpriteBase(
             Globals.UFOs = Globals.UFOs.filter(ufo => ufo !== this);
             delete this;
         }, Globals.UFO_DESTROY_TIME);
+    }
+    update(t) {
+        super.update(t);
+        if(Math.random() * 1000 < 10){
+            if(this.canShoot){
+                this.shoot();
+                this.canShoot = false;
+                setTimeout(()=>{this.canShoot = true}, 600);
+            }
+        }
+    }
+    shoot(){
+        const spore = new Spore({x: this.pos.x + UFO.image.frameWidth / 2 - Spore.image.frameWidth / 2, y: this.pos.y + Spore.image.height});
+        spore.speed.x = this.speed.x;
+        Globals.Spores.push(spore);
     }
 }

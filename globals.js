@@ -20,6 +20,7 @@ export const Globals = {
     UFOs: [],
     Pellets: [],
     Explosions: [],
-    Supplies: []
+    Supplies: [],
+    Spores: []
 }
 export const StartingGlobals = structuredClone(Globals);
