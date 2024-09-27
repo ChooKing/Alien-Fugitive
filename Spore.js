@@ -1,5 +1,6 @@
 import {SpriteBase} from "./Sprite.js";
 import {Globals} from "./globals.js";
+import {incScore} from "./stats.js";
 
 export class Spore extends new SpriteBase(
     "/sprites/spore.png",
@@ -29,5 +30,11 @@ export class Spore extends new SpriteBase(
         if(this.pos.y > Globals.GAME_HEIGHT){
             this.destroy();
         }
+        Globals.Pellets.forEach(pellet=>{
+            if(pellet.isColliding(this)){
+                incScore(1);
+                this.destroy();
+            }
+        });
     }
 }
