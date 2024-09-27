@@ -13,6 +13,9 @@ main{
 .hidden{
   display: none;
 }
+.front{
+  z-index: 3;
+}
 .intro, .stats, .game-over, #app{
   position : absolute;
   left: 50%;
@@ -59,10 +62,15 @@ main{
 .stat-bar .score{
   margin-left: auto;
 }
-main, #app, .intro, .stats, .game-over{
+main, #app, .intro, .game-over{
   margin-inline: auto;
   aspect-ratio: 16/9;
   width: min(99.5vh /9 * 16, 100vw);
+}
+.stats{
+  margin-inline: auto;
+  width: min(99.5vh /9 * 16, 100vw);
+  bottom: 0;
 }
 #app{
   display: block;
