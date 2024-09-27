@@ -29,7 +29,7 @@ export class UFO extends new SpriteBase(
     }
     update(t) {
         super.update(t);
-        if(Math.random() * 1000 < 10){
+        if(Math.random() * 1000 < 2){
             if(this.canShoot){
                 this.shoot();
                 this.canShoot = false;

@@ -2,7 +2,7 @@ import {Globals} from "./globals.js";
 import {Alien} from "./alien.js";
 import {UFO} from "./UFO.js";
 import {Supply} from "./Supply.js";
-import {adjustAmmo, decLives, reset} from "./stats.js";
+import {adjustAmmo, decLives, incLevel, reset} from "./stats.js";
 const canvas = document.querySelector("#app");
 canvas.width = Globals.GAME_WIDTH;
 canvas.height = Globals.GAME_HEIGHT;
@@ -15,6 +15,7 @@ const btnPlay = document.querySelector("#btn-play");
 btnPlay.addEventListener("click", function(){
     intro.classList.add("hidden");
     stats.classList.remove("hidden");
+    startGame();
 });
 const btnAgain = document.querySelector("#btn-again");
 btnAgain.addEventListener("click", function(){
@@ -23,12 +24,13 @@ btnAgain.addEventListener("click", function(){
 });
 const alien = new Alien();
 let lastUpdate = 0;
+let lastLevel = 0;
 let UFOInterval = 0;
 function addUFO(){
     Globals.UFO_COUNT += 1;
     const y = Math.floor(Math.random() * Globals.SKY_SIZE);
     const dir = Math.random() > 0.5 ? -1 : 1;
-    const ufo = new UFO({x: dir > 0 ? -160 : Globals.GAME_WIDTH + 160, y}, dir * 3);
+    const ufo = new UFO({x: dir > 0 ? -160 : Globals.GAME_WIDTH + 160, y}, dir * 0.8 * Globals.stats.level);
     Globals.UFOs.push(ufo);
     UFOInterval = 0;
     if(Globals.UFO_COUNT >= Globals.UFOs_PER_SUPPLY){
@@ -38,9 +40,16 @@ function addUFO(){
     }
 }
 function gameLoop(t){
+    if(lastLevel !== 0){
+        if(t - lastLevel > 20000){
+            incLevel();
+            lastLevel = t;
+        }
+    }
+    else lastLevel = t;
     const timeDelta = lastUpdate === 0 ? 0 : t - lastUpdate;
     UFOInterval += timeDelta;
-    if(UFOInterval > 2000) addUFO();
+    if(UFOInterval > 2000 - (100 * Globals.stats.level)) addUFO();
     lastUpdate = t;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     alien.update(timeDelta);
@@ -120,8 +129,8 @@ function startGame(again = false){
     }
     gameLoop(0);
 }
-startGame();
-document.addEventListener("keydown", function(e) {
+
+document.addEventListener("keydown", (e)=> {
     if(e.key === "ArrowLeft"){
         alien.walk(-1);
     }

@@ -5,7 +5,7 @@ export const Globals = {
     UFO_WIDTH: 160,
     UFO_HEIGHT: 54,
     UFO_COUNT: 0,
-    UFOs_PER_SUPPLY: 2, //Number of UFOs generated before a resupply
+    UFOs_PER_SUPPLY: 17, //Number of UFOs generated before a resupply
     UFO_DESTROY_TIME: 300,
     EXPLOSION_SIZE: 120,
     EXPLOSION_DESTROY_TIME: 450,
@@ -23,4 +23,3 @@ export const Globals = {
     Supplies: [],
     Spores: []
 }
-export const StartingGlobals = structuredClone(Globals);

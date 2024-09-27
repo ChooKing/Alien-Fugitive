@@ -8,13 +8,6 @@
   </head>
   <body>
     <main>
-        <div class="intro">
-            <h1>ALIEN FUGITIVE</h1>
-            <div class="btn-container">
-                <button type="button" id="btn-play">PLAY</button>
-                <button type="button" id="btn-help">HELP</button>
-            </div>
-        </div>
         <div class="stats hidden">
             <div class="stat-bar">
                 <div class="level" data-label="LEVEL: ">1</div>
@@ -23,11 +16,18 @@
                 <div class="score" data-label="SCORE: ">0</div>
             </div>
         </div>
+        <canvas id="app"></canvas>
+        <div class="intro">
+            <h1>ALIEN FUGITIVE</h1>
+            <div class="btn-container">
+                <button type="button" id="btn-play">PLAY</button>
+                <button type="button" id="btn-help">HELP</button>
+            </div>
+        </div>
         <div class="game-over hidden">
             <h1>GAME OVER</h1>
             <button type="button" id="btn-again">PLAY AGAIN</button>
         </div>
-        <canvas id="app"></canvas>
     </main>
     <script type="module" src="/main.js"></script>
   </body>
