@@ -22,7 +22,7 @@ export class Supply extends new SpriteBase(
     destroy(){
         this.willDestroy = true;
         Globals.Supplies = Globals.Supplies.filter(s => s !== this);
-        delete this;
+        this.remove();
     }
     update(t) {
         super.update(t);

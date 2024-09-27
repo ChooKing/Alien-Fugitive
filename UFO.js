@@ -24,7 +24,7 @@ export class UFO extends new SpriteBase(
         this.willDestroy = true;
         setTimeout(()=>{
             Globals.UFOs = Globals.UFOs.filter(ufo => ufo !== this);
-            delete this;
+            this.remove();
         }, Globals.UFO_DESTROY_TIME);
     }
     update(t) {

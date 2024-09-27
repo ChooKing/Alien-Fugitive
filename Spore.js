@@ -22,7 +22,7 @@ export class Spore extends new SpriteBase(
     destroy(){
         this.willDestroy = true;
         Globals.Spores = Globals.Spores.filter(s => s !== this);
-        delete this;
+        this.remove();
     }
     update(t) {
         super.update(t);

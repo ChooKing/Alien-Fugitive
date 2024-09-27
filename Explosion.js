@@ -21,7 +21,7 @@ export class Explosion extends new SpriteBase(
     destroy(){
         setTimeout(()=>{
             Globals.Explosions = Globals.Explosions.filter(ex => ex !== this);
-            delete this;
+            this.remove();
         }, Globals.EXPLOSION_DESTROY_TIME);
     }
 }
