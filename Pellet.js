@@ -24,7 +24,7 @@ export class Pellet extends Movable{
                 Globals.Explosions.push(explosion);
                 ufo.destroy();
                 explosion.destroy();
-                incScore(Globals.POINTS_PER_UFO);
+                incScore(Math.floor(Globals.POINTS_PER_UFO * Globals.stats.level * 0.8));
                 delete this;
             }
         });
