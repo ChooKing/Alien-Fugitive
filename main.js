@@ -2,7 +2,7 @@ import {Globals} from "./globals.js";
 import {Alien} from "./alien.js";
 import {UFO} from "./UFO.js";
 import {Supply} from "./Supply.js";
-import {adjustAmmo} from "./stats.js";
+import {adjustAmmo, decLives} from "./stats.js";
 const canvas = document.querySelector("#app");
 canvas.width = Globals.GAME_WIDTH;
 canvas.height = Globals.GAME_HEIGHT;
@@ -69,10 +69,20 @@ function gameLoop(t){
         }
     });
     Globals.Spores.forEach(spore=>{
-        spore.update(timeDelta);
-        spore.render(ctx);
+        if(!spore.willDestroy){
+            spore.update(timeDelta);
+            spore.render(ctx);
+            if(spore.isColliding(alien)){
+                spore.destroy();
+                decLives();
+
+            }
+        }
     });
-    requestAnimationFrame(gameLoop);
+    if(Globals.stats.lives < 1){
+        console.log("Game Over");
+    }
+    else requestAnimationFrame(gameLoop);
 }
 gameLoop(0);
 document.addEventListener("keydown", function(e) {
