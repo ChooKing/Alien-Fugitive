@@ -12,12 +12,12 @@ main{
 .hidden{
   display: none;
 }
-.intro, .stats{
+.intro, .stats, .game-over{
   position : absolute;
   left: 50%;
   transform: translate(-50%);
 }
-.intro h1{
+.intro h1, .game-over h1{
   margin-block-start: 8vmin;
   font-size : 12vmin;
   text-align: center;
@@ -28,7 +28,7 @@ main{
   gap: 4vmin;
   justify-content: center;
 }
-.intro .btn-container button{
+.intro .btn-container button, .game-over button{
   font-size: 6vmin;
   padding: 1vmin 2vmin;
   border-radius: 2vmin;
@@ -37,6 +37,11 @@ main{
 }
 .intro .btn-container button:hover{
   background-color: rgb(18, 57, 8);
+}
+.game-over button{
+  display: block;
+  margin-block-start: 12vmin;
+  margin-inline: auto;
 }
 .stat-bar{
   display: flex;
@@ -50,7 +55,7 @@ main{
 .stat-bar .score{
   margin-left: auto;
 }
-#app, .intro, .stats{
+#app, .intro, .stats, .game-over{
   margin-inline: auto;
   aspect-ratio: 16/9;
   width: min(99.5vh /9 * 16, 100vw);

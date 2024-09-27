@@ -2,17 +2,24 @@ import {Globals} from "./globals.js";
 import {Alien} from "./alien.js";
 import {UFO} from "./UFO.js";
 import {Supply} from "./Supply.js";
-import {adjustAmmo, decLives} from "./stats.js";
+import {adjustAmmo, decLives, reset} from "./stats.js";
 const canvas = document.querySelector("#app");
 canvas.width = Globals.GAME_WIDTH;
 canvas.height = Globals.GAME_HEIGHT;
 const ctx = canvas.getContext("2d");
 const intro = document.querySelector(".intro");
 const stats = document.querySelector(".stats");
+const gameOver = document.querySelector(".game-over");
 const btnPlay = document.querySelector("#btn-play");
+
 btnPlay.addEventListener("click", function(){
     intro.classList.add("hidden");
     stats.classList.remove("hidden");
+});
+const btnAgain = document.querySelector("#btn-again");
+btnAgain.addEventListener("click", function(){
+    gameOver.classList.add("hidden");
+    startGame(true);
 });
 const alien = new Alien();
 let lastUpdate = 0;
@@ -26,14 +33,14 @@ function addUFO(){
     UFOInterval = 0;
     if(Globals.UFO_COUNT >= Globals.UFOs_PER_SUPPLY){
         Globals.UFO_COUNT = 0;
-        const supply = new Supply({x: Math.floor(Math.random() * Globals.GAME_WIDTH - (alien.width * 2)) + alien.width, y: -Supply.image.height});
+        const supply = new Supply({x: Math.floor(Math.random() * Globals.GAME_WIDTH - alien.width) + alien.width, y: -Supply.image.height});
         Globals.Supplies.push(supply);
     }
 }
 function gameLoop(t){
     const timeDelta = lastUpdate === 0 ? 0 : t - lastUpdate;
     UFOInterval += timeDelta;
-    if(UFOInterval > 5000) addUFO();
+    if(UFOInterval > 2000) addUFO();
     lastUpdate = t;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     alien.update(timeDelta);
@@ -80,11 +87,40 @@ function gameLoop(t){
         }
     });
     if(Globals.stats.lives < 1){
-        console.log("Game Over");
+        gameOver.classList.remove("hidden");
     }
     else requestAnimationFrame(gameLoop);
 }
-gameLoop(0);
+function startGame(again = false){
+    if(again){
+        reset();
+        Globals.UFOs.forEach(ufo =>{
+            ufo.remove();
+        });
+        Globals.Supplies.forEach(supply =>{
+            supply.remove();
+        });
+        Globals.Explosions.forEach(explosion =>{
+            explosion.remove();
+        });
+        Globals.Spores.forEach(spore=>{
+            spore.remove();
+        });
+        Globals.Pellets.forEach(pellet=>{
+            pellet.remove();
+        });
+        Globals.UFOs.length = 0;
+        Globals.Supplies.length = 0;
+        Globals.Explosions.length = 0;
+        Globals.Spores.length = 0;
+        Globals.Pellets.length = 0;
+        Globals.UFO_COUNT = 0;
+        alien.pos.x = 800 - 56;
+        lastUpdate = 0;
+    }
+    gameLoop(0);
+}
+startGame();
 document.addEventListener("keydown", function(e) {
     if(e.key === "ArrowLeft"){
         alien.walk(-1);
