@@ -8,11 +8,12 @@
 }
 main{
   position : relative;
+  background: url("background.png") no-repeat 0 0/ 100%;
 }
 .hidden{
   display: none;
 }
-.intro, .stats, .game-over{
+.intro, .stats, .game-over, #app{
   position : absolute;
   left: 50%;
   transform: translate(-50%);
@@ -38,6 +39,9 @@ main{
 .intro .btn-container button:hover{
   background-color: rgb(18, 57, 8);
 }
+.game-over{
+  background-color: rgba(0,0,0,0.5);
+}
 .game-over button{
   display: block;
   margin-block-start: 12vmin;
@@ -55,14 +59,14 @@ main{
 .stat-bar .score{
   margin-left: auto;
 }
-#app, .intro, .stats, .game-over{
+main, #app, .intro, .stats, .game-over{
   margin-inline: auto;
   aspect-ratio: 16/9;
   width: min(99.5vh /9 * 16, 100vw);
 }
 #app{
   display: block;
-  background: url("background.png") no-repeat 0 0/ 100%;
+
 }
 #alien-viewport{
   position: absolute;
