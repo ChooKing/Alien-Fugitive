@@ -21,5 +21,12 @@ export const Globals = {
     Pellets: [],
     Explosions: [],
     Supplies: [],
-    Spores: []
+    Spores: [],
+    sounds:{
+        explode: new Audio("./sounds/small_explosion.wav"),
+        spore: new Audio("./sounds/spore.wav"),
+        supply: new Audio("./sounds/supply.wav"),
+        die: new Audio("./sounds/die.wav"),
+        shoot: new Audio("./sounds/shoot.wav")
+    }
 }

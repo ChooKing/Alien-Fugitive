@@ -19,6 +19,7 @@ export class Spore extends new SpriteBase(
         this.speed.x = 0;
         this.speed.y = 5;
         this.fps = 5;
+        Globals.sounds.spore.play();
     }
     destroy(){
         this.willDestroy = true;

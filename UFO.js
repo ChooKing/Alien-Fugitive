@@ -22,6 +22,7 @@ export class UFO extends new SpriteBase(
     }
     destroy(){
         this.willDestroy = true;
+        Globals.sounds.explode.play();
         setTimeout(()=>{
             Globals.UFOs = Globals.UFOs.filter(ufo => ufo !== this);
             this.remove();

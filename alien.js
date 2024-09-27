@@ -36,6 +36,7 @@ export class Alien extends new SpriteBase(
         if(Globals.stats.ammo > 0){
             const pellet = new Pellet({x: this.pos.x + (this.width / 2), y: this.pos.y + 42});
             Globals.Pellets.push(pellet);
+            Globals.sounds.shoot.play();
         }
     }
     render(ctx) {

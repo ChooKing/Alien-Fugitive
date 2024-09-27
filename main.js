@@ -13,6 +13,7 @@ const gameOver = document.querySelector(".game-over");
 const btnPlay = document.querySelector("#btn-play");
 
 btnPlay.addEventListener("click", function(){
+    Globals.sounds.supply.play();
     intro.classList.add("hidden");
     stats.classList.remove("hidden");
     startGame();
@@ -92,6 +93,7 @@ function gameLoop(t){
                 spore.destroy();
                 decLives();
                 alien.isHurt = true;
+                Globals.sounds.die.play();
                 setTimeout(()=>{
                     alien.isHurt = false;
                 }, 400);
