@@ -91,7 +91,10 @@ function gameLoop(t){
             if(spore.isColliding(alien)){
                 spore.destroy();
                 decLives();
-
+                alien.isHurt = true;
+                setTimeout(()=>{
+                    alien.isHurt = false;
+                }, 400);
             }
         }
     });

@@ -15,6 +15,7 @@ export class Alien extends new SpriteBase(
     walkDir = 0;
     lastShot = 0;
     isShooting = false;
+    isHurt = false;
     constructor() {
         super({x: 800 - 56, y: 650});
     }
@@ -37,6 +38,12 @@ export class Alien extends new SpriteBase(
             Globals.Pellets.push(pellet);
         }
     }
+    render(ctx) {
+        if(!this.isHurt || (Math.random()*1000 > 850)){
+            super.render(ctx);
+        }
+    }
+
     update(t){
         super.update(t);
         if(this.walkDir !== 0){
