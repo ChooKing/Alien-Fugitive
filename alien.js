@@ -16,7 +16,10 @@ export class Alien extends new SpriteBase(
         super({x: 800 - 56, y: 650});
     }
     walk(dir) {
-        this.speed.x += dir * 2.5;
+        if(this.speed.x === 0){
+            this.speed.x = 10 * dir;
+        }
+        else this.speed.x += dir * 2.5;
         this.fps = this.speed.x * 3;
     }
     stand(){
