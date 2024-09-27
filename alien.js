@@ -12,6 +12,9 @@ export class Alien extends new SpriteBase(
         minY: 0,
         maxY: Globals.GAME_HEIGHT
     }) {
+    walkDir = 0;
+    lastShot = 0;
+    isShooting = false;
     constructor() {
         super({x: 800 - 56, y: 650});
     }
@@ -19,13 +22,14 @@ export class Alien extends new SpriteBase(
         if(this.speed.x === 0){
             this.speed.x = 10 * dir;
         }
-        else this.speed.x += dir * 2.5;
+        else this.speed.x += dir * 1.01;
         this.fps = this.speed.x * 3;
     }
     stand(){
         this.frame = 0;
         this.fps = 0;
         this.speed = {x: 0, y: 0};
+        this.walkDir = 0;
     }
     shoot(){
         if(Globals.stats.ammo > 0){
@@ -35,5 +39,18 @@ export class Alien extends new SpriteBase(
     }
     update(t){
         super.update(t);
+        if(this.walkDir !== 0){
+            this.walk(this.walkDir);
+        }
+        if(this.isShooting){
+            if(this.lastShot === 0){
+                this.shoot();
+            }
+            else if(this.lastShot > 50){
+                this.shoot();
+                this.lastShot = 0;
+            }
+           this.lastShot += t;
+        }
     }
 }

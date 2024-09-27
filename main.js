@@ -132,17 +132,21 @@ function startGame(again = false){
 
 document.addEventListener("keydown", (e)=> {
     if(e.key === "ArrowLeft"){
-        alien.walk(-1);
+        alien.walkDir = -1;
     }
     else if(e.key === "ArrowRight"){
-        alien.walk(1);
+        alien.walkDir = 1;
     }
     else if(e.key === " "){
-        alien.shoot();
+        alien.isShooting = true;
     }
 });
 document.addEventListener("keyup", function(e) {
     if(e.key === "ArrowLeft" || e.key === "ArrowRight"){
         alien.stand();
+    }
+    else if(e.key === " "){
+        alien.isShooting = false;
+        alien.lastShot = 0;
     }
 })
