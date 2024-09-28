@@ -149,6 +149,7 @@ document.addEventListener("keydown", (e)=> {
 document.addEventListener("keyup", function(e) {
     if(e.key === "ArrowLeft" || e.key === "ArrowRight"){
         alien.stand();
+        Globals.mouseX = null;
     }
     else if(e.key === "ArrowUp"){
         alien.isShooting = false;
@@ -168,10 +169,10 @@ main.addEventListener("mouseup", e=>{
 });
 main.addEventListener("mousemove", e=>{
     if(Globals.mouseX){
-        if(Math.abs(e.movementX) > Math.abs(e.movementY * 2)){
+        if(Math.abs(e.movementX) > Math.abs(e.movementY * 15)){
             Globals.mouseX = e.offsetX;
         }
-        else if( -e.movementY > Math.abs(e.movementX * 2)){
+        else if( -e.movementY > Math.abs(e.movementX * 15)){
             alien.shoot();
         }
     }
