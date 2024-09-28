@@ -16,10 +16,15 @@ main{
 .front{
   z-index: 3;
 }
-.intro, .stats, .game-over, #app{
+.intro, .stats, .game-over, .help, #app{
   position : absolute;
   left: 50%;
   transform: translate(-50%);
+}
+main, #app, .intro, .game-over, .help{
+  margin-inline: auto;
+  aspect-ratio: 16/9;
+  width: min(99.5vh /9 * 16, 100vw);
 }
 .intro h1, .game-over h1{
   margin-block-start: 8vmin;
@@ -42,6 +47,44 @@ main{
 .intro .btn-container button:hover{
   background-color: rgb(18, 57, 8);
 }
+.help{
+  padding-inline: 12vmin;
+  font-size: 3vmin;
+  overflow-y: auto;
+}
+.help h1{
+  margin-block-start: 5vmin;
+  font-size : 10vmin;
+  text-align: center;
+}
+.help h2{
+  font-size: 4.5vmin;
+  margin-block-end: 2vmin;
+}
+.help h3{
+  font-size: 4vmin;
+  margin-block: 2vmin;
+}
+.help .goals{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2vmin 4vmin;
+  align-items: center;
+}
+.help .goals img{
+  display: block;
+  margin: auto;
+}
+.help button{
+  display: block;
+  margin-block: 3vmin;
+  margin-inline: auto;
+  font-size: 4vmin;
+  padding: 1vmin 2vmin;
+  border-radius: 2vmin;
+  background-color: rgb(22, 85, 5);
+  cursor: pointer;
+}
 .game-over{
   background-color: rgba(0,0,0,0.5);
 }
@@ -62,11 +105,7 @@ main{
 .stat-bar .score{
   margin-left: auto;
 }
-main, #app, .intro, .game-over{
-  margin-inline: auto;
-  aspect-ratio: 16/9;
-  width: min(99.5vh /9 * 16, 100vw);
-}
+
 .stats{
   margin-inline: auto;
   width: min(99.5vh /9 * 16, 100vw);

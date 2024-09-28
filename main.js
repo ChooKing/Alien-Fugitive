@@ -8,6 +8,7 @@ canvas.width = Globals.GAME_WIDTH;
 canvas.height = Globals.GAME_HEIGHT;
 const ctx = canvas.getContext("2d");
 const intro = document.querySelector(".intro");
+const help = document.querySelector(".help");
 const stats = document.querySelector(".stats");
 const gameOver = document.querySelector(".game-over");
 const btnPlay = document.querySelector("#btn-play");
@@ -22,6 +23,16 @@ const btnAgain = document.querySelector("#btn-again");
 btnAgain.addEventListener("click", function(){
     gameOver.classList.add("hidden");
     startGame(true);
+});
+const btnHelp = document.querySelector("#btn-help");
+btnHelp.addEventListener("click", ()=>{
+    intro.classList.add("hidden");
+    help.classList.remove("hidden");
+});
+const btnHelpOK = document.querySelector("#help-ok");
+btnHelpOK.addEventListener("click", ()=>{
+    intro.classList.remove("hidden");
+    help.classList.add("hidden");
 });
 const alien = new Alien();
 let lastUpdate = 0;
