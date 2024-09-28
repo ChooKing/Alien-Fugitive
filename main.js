@@ -1,4 +1,4 @@
-import {Globals} from "./globals.js";
+import {getXRatio, Globals} from "./globals.js";
 import {Alien} from "./alien.js";
 import {UFO} from "./UFO.js";
 import {Supply} from "./Supply.js";
@@ -142,7 +142,7 @@ document.addEventListener("keydown", (e)=> {
     else if(e.key === "ArrowRight"){
         alien.walkDir = 1;
     }
-    else if(e.key === " "){
+    else if(e.key === "ArrowUp"){
         alien.isShooting = true;
     }
 });
@@ -150,8 +150,32 @@ document.addEventListener("keyup", function(e) {
     if(e.key === "ArrowLeft" || e.key === "ArrowRight"){
         alien.stand();
     }
-    else if(e.key === " "){
+    else if(e.key === "ArrowUp"){
         alien.isShooting = false;
         alien.lastShot = 0;
     }
-})
+});
+window.addEventListener("resize", e =>{
+    Globals.xRatio = getXRatio();
+});
+const main = document.querySelector("main");
+main.addEventListener("mousedown", e=>{
+    Globals.mouseX = e.offsetX;
+});
+main.addEventListener("mouseup", e=>{
+    Globals.mouseX = null;
+    alien.stand();
+});
+main.addEventListener("mousemove", e=>{
+    if(Globals.mouseX){
+        if(Math.abs(e.movementX) > Math.abs(e.movementY * 2)){
+            Globals.mouseX = e.offsetX;
+        }
+        else if( -e.movementY > Math.abs(e.movementX * 2)){
+            alien.shoot();
+        }
+    }
+});
+main.addEventListener("dblclick", e=>{
+    alien.shoot();
+});

@@ -46,9 +46,28 @@ export class Alien extends new SpriteBase(
     }
 
     update(t){
+        //x: this.pos.x += (this.speed.x * t / 20)
+        // if(
+        //     Globals.mouseX && (
+        //         (Globals.mouseX/Globals.xRatio > )||()
+        //     )
+        // ){
+        //
+        // }
         super.update(t);
         if(this.walkDir !== 0){
             this.walk(this.walkDir);
+        }
+        else if(Globals.mouseX){
+            if((this.pos.x + this.width / 2) - 10 > Globals.mouseX / Globals.xRatio){
+                this.walk(-1);
+            }
+            else if((this.pos.x + this.width / 2) + 10 < Globals.mouseX / Globals.xRatio){
+                this.walk(1);
+            }
+            else{
+                this.stand();
+            }
         }
         if(this.isShooting){
             if(this.lastShot === 0){

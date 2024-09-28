@@ -1,6 +1,8 @@
+const GAME_WIDTH = 1600;
+const GAME_HEIGHT = 900;
 export const Globals = {
-    GAME_WIDTH: 1600,
-    GAME_HEIGHT: 900,
+    GAME_WIDTH: GAME_WIDTH,
+    GAME_HEIGHT: GAME_HEIGHT,
     SKY_SIZE: 500,
     UFO_WIDTH: 160,
     UFO_HEIGHT: 54,
@@ -28,5 +30,10 @@ export const Globals = {
         supply: new Audio("./sounds/supply.wav"),
         die: new Audio("./sounds/die.wav"),
         shoot: new Audio("./sounds/shoot.wav")
-    }
+    },
+    xRatio: getXRatio(),
+    mouseX: null
+}
+export function getXRatio(){
+    return document.querySelector("main").getBoundingClientRect().width / GAME_WIDTH;
 }
