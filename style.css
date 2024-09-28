@@ -110,6 +110,7 @@ main, #app, .intro, .game-over, .help{
   margin-inline: auto;
   width: min(99.5vh /9 * 16, 100vw);
   bottom: 0;
+  pointer-events: none;
 }
 #app{
   display: block;
