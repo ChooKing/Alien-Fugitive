@@ -180,10 +180,10 @@ main.addEventListener("mouseup", e=>{
 });
 main.addEventListener("mousemove", e=>{
     if(Globals.mouseX){
-        if(Math.abs(e.movementX) > Math.abs(e.movementY * 15)){
+        if(Math.abs(e.movementX) > Math.abs(e.movementY * 25)){
             Globals.mouseX = e.offsetX;
         }
-        else if( -e.movementY > Math.abs(e.movementX * 15)){
+        else if( -e.movementY > Math.abs(e.movementX * 25)){
             alien.shoot();
         }
     }
