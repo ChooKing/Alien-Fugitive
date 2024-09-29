@@ -116,6 +116,8 @@ main, #app, .intro, .game-over, .help{
 .stats, .stat-bar, .stat-bar > *{
   pointer-events: none;
   user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
 }
 #app{
   display: block;
