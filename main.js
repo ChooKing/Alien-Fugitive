@@ -171,13 +171,16 @@ window.addEventListener("resize", e =>{
     Globals.xRatio = getXRatio();
 });
 const main = document.querySelector("main");
-main.addEventListener("click", e=>{
+canvas.addEventListener("click", e=>{
+    e.preventDefault();
     if(e.target === canvas) alien.shoot();
 });
-main.addEventListener("mousemove", e=>{
+canvas.addEventListener("mousemove", e=>{
+    e.preventDefault();
     Globals.mouseX = e.offsetX;
 });
 
-main.addEventListener("touchmove", e=>{
+canvas.addEventListener("touchmove", e=>{
+    e.preventDefault();
     Globals.mouseX = e.touches[0].clientX;
 });
