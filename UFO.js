@@ -40,7 +40,10 @@ export class UFO extends new SpriteBase(
     }
     shoot(){
         const spore = new Spore({x: this.pos.x + UFO.image.frameWidth / 2 - Spore.image.frameWidth / 2, y: this.pos.y + Spore.image.height});
-        spore.speed.x = this.speed.x;
+        let sporeSpeed = this.speed.x;
+        if(sporeSpeed < -500) sporeSpeed = -500;
+        else if(sporeSpeed > 500) sporeSpeed = 500;
+        spore.speed.x = sporeSpeed;
         Globals.Spores.push(spore);
     }
 }
