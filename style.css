@@ -8,7 +8,7 @@
 }
 main{
   position : relative;
-  background: url("background.png") no-repeat 0 0/ 100%;
+  background: url("./background.png") no-repeat 0 0/ 100%;
 }
 .hidden{
   display: none;
@@ -20,7 +20,9 @@ main{
   position : absolute;
   left: 50%;
   transform: translate(-50%);
+
 }
+
 main, #app, .intro, .game-over, .help{
   margin-inline: auto;
   aspect-ratio: 16/9;
@@ -110,11 +112,14 @@ main, #app, .intro, .game-over, .help{
   margin-inline: auto;
   width: min(99.5vh /9 * 16, 100vw);
   bottom: 0;
+}
+.stats, .stat-bar, .stat-bar > *{
   pointer-events: none;
+  user-select: none;
 }
 #app{
   display: block;
-
+  user-select: none;
 }
 #alien-viewport{
   position: absolute;
