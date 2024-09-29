@@ -13,7 +13,7 @@ const stats = document.querySelector(".stats");
 const gameOver = document.querySelector(".game-over");
 const btnPlay = document.querySelector("#btn-play");
 
-btnPlay.addEventListener("click", function(){
+btnPlay.addEventListener("click", (e)=>{
     Globals.sounds.supply.play();
     intro.classList.add("hidden");
     stats.classList.remove("hidden");
@@ -47,7 +47,7 @@ function addUFO(){
     UFOInterval = 0;
     if(Globals.UFO_COUNT >= Globals.UFOs_PER_SUPPLY){
         Globals.UFO_COUNT = 0;
-        const supply = new Supply({x: Math.floor(Math.random() * Globals.GAME_WIDTH - alien.width) + alien.width, y: -Supply.image.height});
+        const supply = new Supply({x: Math.floor(Math.random() * (Globals.GAME_WIDTH - alien.width)) + alien.width, y: -Supply.image.height});
         Globals.Supplies.push(supply);
     }
 }
@@ -171,23 +171,13 @@ window.addEventListener("resize", e =>{
     Globals.xRatio = getXRatio();
 });
 const main = document.querySelector("main");
-main.addEventListener("mousedown", e=>{
-    Globals.mouseX = e.offsetX;
-});
-main.addEventListener("mouseup", e=>{
-    Globals.mouseX = null;
-    alien.stand();
+main.addEventListener("click", e=>{
+    if(e.target === canvas) alien.shoot();
 });
 main.addEventListener("mousemove", e=>{
-    if(Globals.mouseX){
-        if(Math.abs(e.movementX) > Math.abs(e.movementY * 25)){
-            Globals.mouseX = e.offsetX;
-        }
-        else if( -e.movementY > Math.abs(e.movementX * 25)){
-            alien.shoot();
-        }
-    }
+    Globals.mouseX = e.offsetX;
 });
-main.addEventListener("dblclick", e=>{
-    alien.shoot();
+
+main.addEventListener("touchmove", e=>{
+    Globals.mouseX = e.touches[0].clientX;
 });
